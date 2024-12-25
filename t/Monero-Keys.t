@@ -8,7 +8,7 @@
 use strict;
 use warnings;
 
-use Test::More tests => 7;
+use Test::More tests => 8;
 use parent qw(Test::Class);
 use Monero::Keys;
 
@@ -37,6 +37,12 @@ sub seed_is_eq_l: Tests {
     my $sc = "\xe3\x6a\x67\x72\x8b\xce\x13\x29\x8f\x30\x82\x8c\x0b\xa4\x10\x39\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xf0";
     my $keys = Monero::Keys::generate_keys($sc);
     is ($keys, undef);
+}
+
+sub seed_is_short_key: Tests {
+    my $sc = "\xde";
+    my $keys = Monero::Keys::generate_keys($sc);
+    ok( $keys );
 }
 
 __PACKAGE__->runtests;

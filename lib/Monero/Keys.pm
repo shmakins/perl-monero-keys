@@ -144,6 +144,9 @@ sub _is_not_zero {
 
 sub generate_keys {
     my $seed = shift;
+    if (length($seed) < 32) {
+        $seed .= "\x00" x (32 - length($seed));
+    }
     my $spend_pk = sc_reduce($seed);
     my $spend_pub = _generate_pk_from_sk($spend_pk);
     return undef unless _is_not_zero($spend_pk);
