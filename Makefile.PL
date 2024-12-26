@@ -5,9 +5,16 @@ use ExtUtils::MakeMaker;
 WriteMakefile(
     NAME              => 'Monero::Keys',
     VERSION_FROM      => 'lib/Monero/Keys.pm', # finds $VERSION, requires EU::MM from perl >= 5.5
-    PREREQ_PM         => {}, # e.g., Module::Name => 1.1
+    PREREQ_PM         => {
+        'Math::BigInt'             => 0,
+        'Crypt::Digest::Keccak256' => 0,
+    },
+    TEST_REQUIRES  => {
+        'Test::More'               => 0,
+        'Test::Class'              => 0,
+    },
     ABSTRACT_FROM     => 'lib/Monero/Keys.pm', # retrieve abstract from module
-    AUTHOR            => 'Denys Fisher <dfisher@p1s.plx.sd.apple.com>',
+    AUTHOR            => 'Denys Fisher <shmakins@gmail.com>',
     #LICENSE           => 'perl',
     #Value must be from legacy list of licenses here
     #https://metacpan.org/pod/Module::Build::API
