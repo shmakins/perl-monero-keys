@@ -5,7 +5,7 @@ use warnings;
 use Crypt::Digest::Keccak256 qw(keccak256);
 use Math::BigInt;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 require XSLoader;
 XSLoader::load('Monero::Keys', $VERSION);
@@ -205,7 +205,7 @@ Denys Fisher, E<lt>shmakins at gmail dot comE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2024 by Denys Fisher
+Copyright (C) 2025 by Denys Fisher
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself, either Perl version 5.34.1 or,

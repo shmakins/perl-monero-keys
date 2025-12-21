@@ -4,6 +4,33 @@ Monero-Keys version 0.01
 NAME
     Monero-Keys module to generate Monero cryptocurrency compatible keys.
 
+SYNOPSIS
+      use Monero::Keys;
+
+      my $keys;
+      do {
+          my $seed = random_32_bytes();
+          $keys = Monero::Keys::generate_keys($seed);
+      } while (!defined($keys));
+      printf ("Spend Private key:%s \n", unpack('H*', $keys->{spend_pk}));
+      printf ("Spend Public key:%s \n", unpack('H*', $keys->{spend_pub}));
+      printf ("View Private key:%s \n", unpack('H*', $keys->{view_pk}));
+      printf ("View Public key:%s \n", unpack('H*', $keys->{view_pub}));
+
+DESCRIPTION
+
+   generate_keys($seed)
+
+      This function generates Monero compatible keys from 32 bytes seed.
+      The valid private keys in monero should less than L (L is 2^252 + 27742317777372353535851937790883648493).
+      So private key = mod(seed, L). In case of seed is multiple of L, the function will return undef.
+      In that case try another seed.
+      The seed should be cryptographically secure random 32 bytes.
+
+SEE ALSO
+   This module uses XS code from Crypt::PK::Ed25519 for point generation.
+   It also uses sc_reduce32 function from Monero codebase for mod L operation.
+
 INSTALLATION
 
 To install this module type the following:
